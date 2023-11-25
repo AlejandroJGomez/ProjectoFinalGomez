@@ -1,0 +1,42 @@
+{% extends "AppPro/index.html" %}
+
+{% load static %}
+ 
+{% block title %}{{ pelicula.titulo }}{% endblock title %}
+ 
+{% block body %}
+<div style="display: flex; align-items: flex-start;">  <!-- Utilizamos flexbox para alinear en una fila -->
+    <div class="card" style="width: 18rem; margin-right: 10px;">
+        <div class="card-body text-center">
+            <h5 class="card-title">{{ pelicula.titulo }}</h5>
+            <hr>
+            <img src="{{ pelicula.poster.url }}" alt="{{ pelicula.title }}" class="card-img-top">
+        </div>
+    </div>
+    
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Comentarios Recientes</h5>
+                {% for comentario in comentario %}
+                    <div class="mb-3">
+                        <p class="mb-0 text-muted">{{ comentario.fecha_creacion|date:"F d, Y H:i" }}</p>
+                        <p class="mb-0"><strong>{{ comentario.usuario.username }}:</strong> {{ comentario.contenido }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <h5 class="card-title">Nuevo Comentario</h5>
+        <form method="post" action="{% url 'apppro:detalles_con_comentarios' pelicula.id %}">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Publicar comentario</button>
+        </form>
+    </div>
+       
+     
+    
+</div>
+{% endblock body %}

@@ -1,0 +1,370 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html lang="en">
+        <!-- /////////////////////////CABECERA//////////////////////////////////////////////////-->
+     <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>{% block title %}RecoPel{% endblock title %}</title>
+
+        <!-- /////////////////////////FAVICON//////////////////////////////////////////////////-->
+
+        <link rel="icon" type="image/x-icon" href="{% static 'AppPro/asset/favicon.ico' %}" />
+
+        <!-- /////////////////////////Bootstrap ICONOS//////////////////////////////////////////////////-->
+
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+
+        <!-- /////////////////////////ESTILOS//////////////////////////////////////////////////-->
+    
+        <link href="{% static 'AppPro/css/styles.css' %}" rel="stylesheet" />
+
+     </head>
+
+
+     <body>
+            <!-- /////////////////////////NAVEGACION//////////////////////////////////////////////////-->
+
+
+        <!-- Contenedor principal del cuerpo de la página -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+         <div class="container px-4 px-lg-5">
+            <a class="navbar-brand" href="#!">RECOPEL</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                        
+                            <!-- //////////////////////////////MENÚ/////////////////////////////////////////////-->                
+                            <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'apppro:inicio' %}">Inicio</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{% url 'apppro:peli' %}">Peliculas</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#!">Series</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#!">Infantiles</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#!">Reseñas</a></li>
+
+
+                            <!-- ////////////////////////////MENÚ DESPLEGABLE///////////////////////////////////////////////-->
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Menú</a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" href="#!">Nosotros</a></li>
+                                    <li><hr class="dropdown-divider" /></li>
+                                    <li><a class="dropdown-item" href="#!">Contáctanos</a></li>
+                                    <li><a class="dropdown-item" href="#!">Enlaces</a></li>
+                                </ul>
+                            </li>
+                </ul>
+                    
+                    <!-- /////////////////////////////FORMULARIO DE INICIO DE SESION//////////////////////////////////////////////-->
+                    <form class="d-flex">
+                        {% if not user.is_authenticated %}
+                        <a href="{% url 'apppro:login' %}" class="btn btn-outline-dark">
+                            <i class="bi bi-door-open"></i>
+                            Login
+                            
+                        </a>    
+                        {% endif %}
+                        {% if user.is_authenticated %}
+                            
+                            <a href="{% url 'apppro:perfil' %}" class="btn btn-outline-dark">
+                                <i class="bi bi-person-check"></i>
+                                Perfil de {{ user.username }}
+                               
+                            </a>
+                            <a href="{% url 'apppro:logout' %}" class="btn btn-dark" style="color: #000000; background-color: white; border: 1px solid #000; padding: 8px 12px; text-decoration: none; border-radius: 4px;">Logout</a>
+                        {% endif %}
+                    </form>
+                    
+                    </div>
+         </div>
+        </nav>
+
+        <!-- /////////////////////////////ENCABEZADO//////////////////////////////////////////////-->
+
+        <header class="bg-success py-1" style="background-image: url('{% static '' %}'); background-size: cover; background-position: center;">
+                <div class="container px-4 px-lg-5 my-5">
+                    <div class="text-center text-black">
+                        <h1 class="display-4 fw-bolder">Peliculas Recomendadas</h1>
+                        <p class="lead fw-normal text-white-50 mb-0">¿No sabes qué mirar? Te ayudamos</p>
+                    </div>
+                </div>
+        </header>
+        <div class="container main-content">
+        {% block body %}
+        </div>
+            <!-- /////////////////////////////SECCIÓN DE CINE//////////////////////////////////////////////-->
+         
+            <section class="py-5">
+             <div class="container px-4 px-lg-5 mt-5">
+                <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+                    <!-- Card 1 -->
+                    <div class="col mb-5">
+                        <div class="card h-100">
+                            <!-- Imagen de la película/serie como enlace -->
+                            <a href="">
+                            <img class="card-img-top" src="{% static 'AppPro/img/hombreenllamas.jpg' %}" alt="..." />
+                            </a>
+                            <!-- Detalles del producto -->
+                            <div class="card-body p-4">
+                                <div class="text-center">
+                                    <!-- Nombre de la película -->
+                                    <h5 class="fw-bolder mb-3">Hombre en llamas (2004)</h5>
+                                    <!-- Calificación -->
+                                    <div style="display: flex; margin-bottom: 1px;">
+                                        <p style="margin-right: 10px;">Calificación</p>
+                                        <p style="margin-right: 10px;">7,7/10</p>
+                                        <img src="{% static 'AppPro/img/imdb.png' %}" alt="Calificación" width="40" height="20">
+                                    </div>
+                                    <div style="display: flex">
+                                        <p style="margin-right: 10px;">Calificación</p>
+                                        <p style="margin-right: 10px;">7,1/10</p>
+                                        <img src="{% static 'AppPro/img/filmaffinity.png' %}" alt="Calificación" width="40" height="20">
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Acciones del producto -->
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">VER</a></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- ... Más tarjetas de productos ... -->
+                    <div class="col mb-5">
+                        <div class="card h-100">
+                            <!-- Imagen de la película/serie -->
+                            <img class="card-img-top" src="{% static 'AppPro/img/laluzquenopuedesver.jpg' %}" alt="..." />
+                            <!-- Detalles del producto -->
+                            <div class="card-body p-4">
+                                <div class="text-center">
+                                    <!--donde ver la peli-->
+                                    <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Netflix</div>
+                                    <!-- Nombre de la película -->
+                                    <h5 class="fw-bolder mb-3">La luz que no puedes ver(2023)</h5>
+                                    <!-- Calificación -->
+                                    <div style="display: flex; margin-bottom: 1px;">
+                                        <p style="margin-right: 10px;">Calificación</p>
+                                        <p style="margin-right: 10px;">7,6/10</p>
+                                        <img src="{% static 'AppPro/img/imdb.png' %}" alt="Calificación" width="40" height="20">
+                                    </div>
+                                    <div style="display: flex">
+                                        <p style="margin-right: 10px;">Calificación</p>
+                                        <p style="margin-right: 10px;">6,4/10</p>
+                                        <img src="{% static 'AppPro/img/filmaffinity.png' %}" alt="Calificación" width="40" height="20">
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Acciones del producto -->
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">VER</a></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--###############################################################-->
+                    <div class="col mb-5">
+                        <div class="card h-100">
+                            <!-- Imagen de la película/serie -->
+                            <img class="card-img-top" src="{% static 'AppPro/img/the_killer.jpg' %}" alt="..." />
+                            <!-- Detalles del producto -->
+                            <div class="card-body p-4">
+                                <div class="text-center">
+                                    <!-- Nombre de la película -->
+                                    <h5 class="fw-bolder mb-5">El asesino(2023   )</h5>
+                                    <!-- Calificación -->
+                                    <div style="display: flex; margin-bottom: 1px;">
+                                        <p style="margin-right: 10px;">Calificación</p>
+                                        <p style="margin-right: 10px;">6,9/10</p>
+                                        <img src="{% static 'AppPro/img/imdb.png' %}" alt="Calificación" width="40" height="20">
+                                    </div>
+                                    <div style="display: flex">
+                                        <p style="margin-right: 10px;">Calificación</p>
+                                        <p style="margin-right: 10px;">6,4/10</p>
+                                        <img src="{% static 'AppPro/img/filmaffinity.png' %}" alt="Calificación" width="40" height="20">
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Acciones del producto -->
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">VER</a></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$44-->
+                    <div class="col mb-5">
+                        <div class="card h-100">
+                            <!-- Imagen de la película/serie -->
+                            <img class="card-img-top" src="{% static 'AppPro/img/killers_of_the_flower_moon.jpg' %}" alt="..." />
+                            <!-- Detalles del producto -->
+                            <div class="card-body p-4">
+                                <div class="text-center">
+                                    <!-- Nombre de la película -->
+                                    <h5 class="fw-bolder mb-3">Los asesinos de la luna(2023)</h5>
+                                    <!-- Calificación -->
+                                    <div style="display: flex; margin-bottom: 1px;">
+                                        <p style="margin-right: 10px;">Calificación</p>
+                                        <p style="margin-right: 10px;">8/10</p>
+                                        <img src="{% static 'AppPro/img/imdb.png' %}" alt="Calificación" width="40" height="20">
+                                    </div>
+                                    <div style="display: flex">
+                                        <p style="margin-right: 10px;">Calificación</p>
+                                        <p style="margin-right: 10px;">7,2/10</p>
+                                        <img src="{% static 'AppPro/img/filmaffinity.png' %}" alt="Calificación" width="40" height="20">
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Acciones del producto -->
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">VER</a></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--####################################################################################-->
+                    <div class="col mb-5">
+                        <div class="card h-100">
+                            <!-- Imagen de la película/serie -->
+                            <img class="card-img-top" src="{% static 'AppPro/img/forallmankind.jpg' %}" alt="..." />
+                            <!-- Detalles del producto -->
+                            <div class="card-body p-4">
+                                <div class="text-center">
+                                    <!--donde ver la peli-->
+                                    <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Apple Tv</div>
+                                    <!-- Nombre de la película -->
+                                    <h5 class="fw-bolder mb-4">Para toda la humanidad (2023)</h5>
+                                    <!-- Calificación -->
+                                    <div style="display: flex; margin-bottom: 1px;">
+                                        <p style="margin-right: 10px;">Calificación</p>
+                                        <p style="margin-right: 10px;">8,1/10</p>
+                                        <img src="{% static 'AppPro/img/imdb.png' %}" alt="Calificación" width="40" height="20">
+                                    </div>
+                                    <div style="display: flex">
+                                        <p style="margin-right: 10px;">Calificación</p>
+                                        <p style="margin-right: 10px;">7,1/10</p>
+                                        <img src="{% static 'AppPro/img/filmaffinity.png' %}" alt="Calificación" width="40" height="20">
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Acciones del producto -->
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">VER</a></div>
+                            </div>
+                        </div>
+                                        
+                    </div>
+                    <!--///////////////////////////////////////////////////////////////////////-->
+                    <div class="col mb-5">
+                        <div class="card h-100">
+                            <!-- Imagen de la película/serie -->
+                            <img class="card-img-top" src="{% static 'AppPro/img/napoleon.jpg' %}" alt="..." />
+                            <!-- Detalles del producto -->
+                            <div class="card-body p-4">
+                                <div class="text-center">
+                                    <!--donde ver la peli-->
+                                    <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Nueva</div>
+                                    <!-- Nombre de la película -->
+                                    <h5 class="fw-bolder mb-5">Napoleon (2023)</h5>
+                                    <a></a>
+                                    <!-- Calificación -->
+                                    <div style="display: flex; margin-bottom: 1px;">
+                                        <p style="margin-right: 10px;">Calificación</p>
+                                        <p style="margin-right: 10px;">nueva</p>
+                                        <img src="{% static 'AppPro/img/imdb.png' %}" alt="Calificación" width="40" height="20">
+                                    </div>
+                                    <div style="display: flex">
+                                        <p style="margin-right: 10px;">Calificación</p>
+                                        <p style="margin-right: 10px;">7,2/10</p>
+                                        <img src="{% static 'AppPro/img/filmaffinity.png' %}" alt="Calificación" width="40" height="20">
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Acciones del producto -->
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">VER</a></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!--/////////////////////////////////////////////////////////////////////////////777 -->
+                    <div class="col mb-5">
+                        <div class="card h-100">
+                            <!-- Imagen de la película/serie -->
+                            <img class="card-img-top" src="{% static 'AppPro/img/spider_man_across_the_spider_verse.jpg' %}" alt="..." />
+                            <!-- Detalles del producto -->
+                            <div class="card-body p-4">
+                                <div class="text-center">
+                                    <!-- Nombre de la película -->
+                                    <h5 class="fw-bolder">Spider-Man: Cruzando el multiverso (2023)</h5>
+                                    <!-- Calificación -->
+                                    <div style="display: flex; margin-bottom: 1px;">
+                                        <p style="margin-right: 10px;">Calificación</p>
+                                        <p style="margin-right: 10px;">8,7/10</p>
+                                        <img src="{% static 'AppPro/img/imdb.png' %}" alt="Calificación" width="40" height="20">
+                                    </div>
+                                    <div style="display: flex">
+                                        <p style="margin-right: 10px;">Calificación</p>
+                                        <p style="margin-right: 10px;">7,9/10</p>
+                                        <img src="{% static 'AppPro/img/filmaffinity.png' %}" alt="Calificación" width="40" height="20">
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Acciones del producto -->
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">VER</a></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--/////////////////////////////////////////////////////////////////////////////////////7-->
+                    <div class="col mb-5">
+                        <div class="card h-100">
+                            <!-- Imagen de la película/serie -->
+                            <img class="card-img-top" src="{% static 'AppPro/img/bodies.jpg' %}" alt="..." />
+                            <!-- Detalles del producto -->
+                            <div class="card-body p-4">
+                                <div class="text-center">
+                                    <!-- Nombre de la película con margen inferior -->
+                                    <h5 class="fw-bolder mb-5">Cadáveres (2023)</h5>
+                                    <!-- Calificación -->
+                                    <div style="display: flex; margin-bottom: 1px;">
+                                        <p style="margin-right: 10px;">Calificación</p>
+                                        <p style="margin-right: 10px;">7,4/10</p>
+                                        <img src="{% static 'AppPro/img/imdb.png' %}" alt="Calificación" width="40" height="20">
+                                    </div>
+                                    <div style="display: flex">
+                                        <p style="margin-right: 10px;">Calificación</p>
+                                        <p style="margin-right: 10px;">6,4/10</p>
+                                        <img src="{% static 'AppPro/img/filmaffinity.png' %}" alt="Calificación" width="40" height="20">
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            <!-- Acciones del producto -->
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">VER</a></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--////////////////////////////////////////////////////////////////////////////////////7-->
+                    {% endblock body %} 
+                </div>
+             </div>
+            </section>
+        
+        <!-- /////////////////////////////PIE DE PAGINA//////////////////////////////////////////////-->
+        
+        
+        <footer class="py-5 bg-dark">
+            <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Alejo 2023</p></div>
+            
+        </footer>
+        
+        <!-- Bootstrap core JS -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS -->
+        <script src="js/scripts.js"></script>
+        
+     </body>
+
+
+</html>
+

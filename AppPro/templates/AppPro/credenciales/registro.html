@@ -1,0 +1,64 @@
+{% extends "AppPro/index.html" %}
+
+{% load static %}
+
+{% block titulo %}Registro{% endblock titulo %}
+
+{% block body %}
+
+<div style="margin-top: 40px; margin-bottom: 50px;" class="d-flex justify-content-center align-items-center">    
+    <div class="card" style="width: 18rem;">
+        <div class="card-body text-center">
+            <h5 class="card-title">Registro de usuario</h5>
+            <hr>
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                
+                <div class="align-items-center"style="margin-bottom: 10px;">
+                    *{{ form.username.label_tag }}
+                    {{ form.username }}
+                </div>
+                
+                <div class="align-items-center" style="margin-bottom: 10px;">
+                    *{{ form.password1.label_tag }}
+                     {{ form.password1 }}
+                </div>
+                
+                <div class="align-items-center"style="margin-bottom: 10px;">
+                    *{{ form.password2.label_tag }}
+                    {{ form.password2 }}
+                </div>
+                
+                <div class="align-items-center" style="margin-bottom: 10px;">
+                    {{ form.localidad.label_tag }}
+                    {{ form.localidad }}
+                </div>
+                
+                <div class="align-items-center" style="margin-bottom: 20px;">
+                  <label for="floatingInput">Instagram</label>
+                 
+                    {{ form.ig }}
+                </div>
+                
+                <div class="align-items-center" style="margin-bottom: 30px;">
+                  <label for="floatingInput">*Correo electronico</label>
+                    {{ form.email }}
+                </div>
+                <label for="floatingInput">Foto de perfil</label>
+                <div class="align-items-center" style="margin-bottom: 40px; margin-left: 50px">
+                    {{ form.foto_perfil }}
+                   
+                </div>
+                <a>* campo obligatorio</a>
+                <hr> 
+                
+                <button type="submit" class="btn btn-primary">Registrarse</button>
+            </form>
+            <hr>
+        </div>
+    </div>
+</div>
+{% endblock body %}
+
+
+

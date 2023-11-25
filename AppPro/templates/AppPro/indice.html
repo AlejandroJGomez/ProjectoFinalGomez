@@ -1,0 +1,36 @@
+{% extends "AppPro/index.html" %}
+
+{% load static %}
+
+{% block titulo %}{% endblock titulo %}
+
+{% block body %}
+
+<div style="margin-top: 40px; margin-bottom: 50px;" class="d-flex justify-content-center align-items-center">    
+
+    {% for pelis in peli %}
+    <div class="card" style="width: 18rem; margin-right: 10px;">
+        <div class="card-body text-center">
+            <h5 class="card-title">{{ pelis.titulo }}</h5>
+            <hr>
+            <a href="{% url 'apppro:detalles_con_comentarios' pelis.pk %}"> 
+                <img src="{{ pelis.poster.url }}" alt="{{ pelis.title }}" class="card-img-top">
+                
+            </a>
+            <hr>
+            <p class="fs-4">{{ pelis.anio }}</p>    
+            <hr>
+            <p class="card-text">{{ pelis.sinopsis }}</p>
+        </div>
+    </div>
+    {% endfor %}
+
+</div>
+{% endblock body %}
+
+
+
+
+
+
+

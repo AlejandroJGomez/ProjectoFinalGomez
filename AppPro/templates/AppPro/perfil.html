@@ -1,0 +1,74 @@
+{% extends "AppPro/index.html" %}
+
+{% load static %}
+ 
+{% block title %}Perfil{% endblock title %}
+ 
+{% block body %}
+<div class="container my-3">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card border rounded-2 shadow p-3 mb-3">
+                <div class="card-body">
+                    <div class="bg-success p-2 text-white bg-opacity-75"></div>
+                    <img class="img-thumbnail rounded-circle mb-3" src="{{ perfil.foto_perfil.url }}" alt="{{ perfil.usuario.username }}" style="width:100px;">
+                    <h2>{{ user.first_name }} {{ user.last_name }} </h2>
+                    <h4> GRUPO AL QUE PERTENECE </h4>
+                    <p><strong> Nombre de usuario: </strong>{{ perfil.usuario.username }}</p>
+                    <p><strong> Localidad: </strong>{{ perfil.localidad }}</p>
+                    <p><strong> IG: </strong>{{ perfil.ig }}</p>
+                    <p><strong> Email: </strong>{{ user.email }}</p>
+                    <hr>
+                    <div class="bg-success p-2 text-white bg-opacity-75"></div>
+                    <hr>
+                    <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#editProfileModal">
+                        Editar Perfil
+                      </button>
+                                    <a class="btn btn-danger" href="{% url 'apppro:logout' %}">Cerrar Sesión</a>
+                </div>
+            </div>
+        </div>
+        <div class="card border rounded-2 shadow p-3 mb-3">
+            <div class="card-body">
+                <!-- Contenido para la segunda tarjeta -->
+            </div>
+        </div>
+    </div>   
+    <div class="modal fade" id="editProfileModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="editProfileModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="editProfileModal">Edición de perfil</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+            <div class="modal-body">
+                <div class="d-flex">
+                    <img class="mx-auto img-thumbnail rounded-circle mb-3" src="{{ perfil.foto_perfil.url }}" alt="{{ perfil.usuario.username }}" style="width:100px;">
+                </div>
+                <div class="mb-3">
+                    <label for="image">Imagen de perfil</label>
+                    <input class="form-control" type="file" name="image" id="image">
+                </div>
+                <div class="d-flex">
+                    <div class="mb-3 mr-2">
+                        <label for="localidad">localidad</label>
+                        <input type="text" class="form-control" name="localidad" value="{{ perfil.localidad }}">
+                
+                    <div class="mb-3">
+                        <label for="ig">Instagram</label>
+                        <input type="text" class="form-control" name="ig" value="{{ perfil.ig }}">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                     <button type="submit" class="btn btn-primary">Guardar</button>
+                </div>
+               
+
+          </div>
+        </div>
+      </div>
+         
+</div>
+{% endblock body %}
