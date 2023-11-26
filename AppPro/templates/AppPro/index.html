@@ -38,8 +38,8 @@
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
                         
                             <!-- //////////////////////////////MENÚ/////////////////////////////////////////////-->                
-                            <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'apppro:inicio' %}">Inicio</a></li>
-                            <li class="nav-item"><a class="nav-link" href="{% url 'apppro:peli' %}">Peliculas</a></li>
+                            <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'inicio' %}">Inicio</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{% url 'peli' %}">Peliculas</a></li>
                             <li class="nav-item"><a class="nav-link" href="#!">Series</a></li>
                             <li class="nav-item"><a class="nav-link" href="#!">Infantiles</a></li>
                             <li class="nav-item"><a class="nav-link" href="#!">Reseñas</a></li>
@@ -60,7 +60,7 @@
                     <!-- /////////////////////////////FORMULARIO DE INICIO DE SESION//////////////////////////////////////////////-->
                     <form class="d-flex">
                         {% if not user.is_authenticated %}
-                        <a href="{% url 'apppro:login' %}" class="btn btn-outline-dark">
+                        <a href="{% url 'login' %}" class="btn btn-outline-dark">
                             <i class="bi bi-door-open"></i>
                             Login
                             
@@ -68,12 +68,12 @@
                         {% endif %}
                         {% if user.is_authenticated %}
                             
-                            <a href="{% url 'apppro:perfil' %}" class="btn btn-outline-dark">
+                            <a href="{% url 'perfil' %}" class="btn btn-outline-dark">
                                 <i class="bi bi-person-check"></i>
                                 Perfil de {{ user.username }}
                                
                             </a>
-                            <a href="{% url 'apppro:logout' %}" class="btn btn-dark" style="color: #000000; background-color: white; border: 1px solid #000; padding: 8px 12px; text-decoration: none; border-radius: 4px;">Logout</a>
+                            <a href="{% url 'logout' %}" class="btn btn-dark" style="color: #000000; background-color: white; border: 1px solid #000; padding: 8px 12px; text-decoration: none; border-radius: 4px;">Logout</a>
                         {% endif %}
                     </form>
                     

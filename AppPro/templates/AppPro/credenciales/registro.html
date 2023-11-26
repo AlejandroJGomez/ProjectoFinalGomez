@@ -9,7 +9,8 @@
 <div style="margin-top: 40px; margin-bottom: 50px;" class="d-flex justify-content-center align-items-center">    
     <div class="card" style="width: 18rem;">
         <div class="card-body text-center">
-            <h5 class="card-title">Registro de usuario</h5>
+            <h5 class="card-title">Registro de usuario </h5>
+            <h5 class="card-title fw-bolder">{{error}}</h5>
             <hr>
             <form method="post" enctype="multipart/form-data">
                 {% csrf_token %}
@@ -49,7 +50,7 @@
                     {{ form.foto_perfil }}
                    
                 </div>
-                <a>* campo obligatorio</a>
+                <a>* campo obligatorio-Contraseña alfanumerica - Minimo 8 caracteres</a>
                 <hr> 
                 
                 <button type="submit" class="btn btn-primary">Registrarse</button>
@@ -59,6 +60,3 @@
     </div>
 </div>
 {% endblock body %}
-
-
-

@@ -18,18 +18,23 @@
         <div class="card">
             <div class="card-body">
                 <h5 class="card-title">Comentarios Recientes</h5>
-                {% for comentario in comentario %}
-                    <div class="mb-3">
-                        <p class="mb-0 text-muted">{{ comentario.fecha_creacion|date:"F d, Y H:i" }}</p>
-                        <p class="mb-0"><strong>{{ comentario.usuario.username }}:</strong> {{ comentario.contenido }}</p>
-                    </div>
-                {% endfor %}
+                {% if comentarios %}
+                <h2>Comentarios:</h2>
+                <ul>
+                    {% for comentario in comentarios %}
+                        <li>{{ comentario.usuario.username }}: {{ comentario.contenido }}</li>
+                        <span class="timestamp">{{ comentario.fecha_creacion }}</span>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No hay comentarios todavía.</p>
+            {% endif %}
             </div>
         </div>
     </div>
     <div class="card-body">
         <h5 class="card-title">Nuevo Comentario</h5>
-        <form method="post" action="{% url 'apppro:detalles_con_comentarios' pelicula.id %}">
+        <form method="POST" action="{% url 'comentar' pelicula.id %}">
             {% csrf_token %}
             {{ form.as_p }}
             <button type="submit" class="btn btn-primary">Publicar comentario</button>

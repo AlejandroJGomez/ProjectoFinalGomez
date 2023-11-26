@@ -13,7 +13,7 @@
         <div class="card-body text-center">
             <h5 class="card-title">{{ pelis.titulo }}</h5>
             <hr>
-            <a href="{% url 'apppro:detalles_con_comentarios' pelis.pk %}"> 
+            <a href="{% url 'comentar' pelis.pk %}"> 
                 <img src="{{ pelis.poster.url }}" alt="{{ pelis.title }}" class="card-img-top">
                 
             </a>
