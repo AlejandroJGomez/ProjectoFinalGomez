@@ -12,4 +12,11 @@ urlpatterns = [
     path('indice/',pelicula,name='peli'),
     path('perfil/', perfil, name='perfil'),
     path('comentar/<int:pelicula_id>/',comentar, name='comentar'),
+    path('series', series, name="series"),
+    path('infantiles', infantiles, name="infantiles"),
+    path('reseñas', resenias, name="reseñas"),
+    path('series', series, name="series"),
+    path('nosotros', nosotros, name="nosotros"),
+    path('infantiles', infantiles, name="infantiles"),
+    path('contactanos', contactanos, name="contactanos"),
     ]

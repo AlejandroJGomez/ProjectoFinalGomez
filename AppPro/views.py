@@ -103,3 +103,27 @@ def comentar(request, pelicula_id):
     return render(request, 'AppPro/detalle_pese.html', {'pelicula': pelicula, 'form': form, 'comentarios': comentarios})
 
 
+def series(request):
+    return render(request, "AppPro/series.html")
+
+
+def infantiles(request):
+    return render(request, "AppPro/infantiles.html")
+
+
+def resenias(request):
+    return render(request, "AppPro/resenias.html")
+
+
+def nosotros(request):
+    return render(request, "AppPro/nosotros.html")
+
+
+def contactanos(request):
+    return render(request, "AppPro/contactanos.html")
+
+
+
+
+
+    
