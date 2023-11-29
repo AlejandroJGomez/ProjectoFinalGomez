@@ -1,13 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1 class="display-4 fw-bolder">Pagina en construcción</h1>
-    <li class="nav-item"><a class="nav-link" href="{% url 'inicio' %}">indice</a></li>
+{% extends "AppPro/index.html" %}
 
-</body>
-</html>
+{% load static %}
+
+{% block titulo %}Sobre mí{% endblock titulo %}
+
+{% block body %}
+    <div class="text-center my-4">
+        <img src="{% static 'AppPro/img/fotodeperfil.jpg' %}" alt="Foto de Perfil" class="rounded-circle" width="200">
+    </div>
+
+    <div class="container text-center">
+        <h1 class="display-4 fw-bolder">¡Sobre mí!</h1>
+        <p class="lead">¡Hola a todos! Soy Alejandro, el apasionado creador detrás de esta plataforma. Soy un entusiasta del deporte y la tecnología, siempre ávido de explorar nuevos conocimientos y experiencias emocionantes.
+
+            Mi amor por las películas y las series es algo que comparto con mi familia, y es esa pasión la que me inspiró a crear este espacio dedicado al séptimo arte. En este proyecto, he ideado un lugar donde la gente puede encontrar recomendaciones sinceras y valiosas a la hora de elegir qué película o serie ver.
+            
+            La idea es simple pero poderosa: un espacio donde la comunidad puede compartir sus opiniones y recomendaciones, creando así una red de intercambio de experiencias cinematográficas. Me encanta la idea de que los usuarios no solo puedan recibir sugerencias, sino también aportar sus propias recomendaciones y opiniones. Después de todo, ¿qué mejor manera de descubrir nuevas gemas que a través de las experiencias compartidas de otros amantes del cine y las series?
+            
+            Así que bienvenidos a este rincón virtual donde la pasión por el entretenimiento se une con la fuerza de la comunidad. ¡Espero que encuentren aquí el próximo título que los emocione tanto como a mí! ¡Disfruten explorando y compartiendo sus favoritos!
+        </p>
+    </div>
+
+    <ul class="nav justify-content-center mt-4">
+        <li class="nav-item"><a class="nav-link" href="{% url 'inicio' %}">Índice</a></li>
+    </ul>
+{% endblock %}
+
