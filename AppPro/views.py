@@ -12,8 +12,7 @@ from django.views.generic import ListView
 def inicio(resquet):   
     return render(resquet,"AppPro/index.html")
 
-
-
+#Login
 def loguin_requerido(request):   
                                      
     if request.method== 'POST':    
@@ -31,9 +30,9 @@ def loguin_requerido(request):
     else:
          form=AuthenticationForm()
          return render(request, "AppPro/credenciales/login.html", { "form":form})  
-
  
 
+#registro
 def registro(request):
     if request.method == 'POST':
         form = PerfilForm(request.POST, request.FILES)
@@ -56,16 +55,18 @@ def registro(request):
     return render(request, 'AppPro/credenciales/registro.html', {'form': form})
 
 
-
+#Logout
 class BotonLogout(LogoutView):
     template_name = 'AppPro/index.html'
 
 
+#index page
 @login_required(login_url='login')
 def index(request):
     return render(request, 'AppPro/index.html')
 
 
+#Peliculas posteadas
 @login_required(login_url='login')
 def pelicula(request):
     peli=Pelicula.objects.all()
@@ -73,19 +74,20 @@ def pelicula(request):
 
 
 
+#Pefil: muestra y edición
 @login_required
 def perfil(request):
     instancia_perfil = Perfil.objects.get(usuario=request.user)
     if request.method == 'POST':
-        form = PerfilForm(request.POST, request.FILES, instance=instancia_perfil)
+        form = PerfilEdicionForm(request.POST, request.FILES, instance=instancia_perfil)
         if form.is_valid():
             form.save()
     else:
-        form = PerfilForm(instance=instancia_perfil)       
+        form = PerfilEdicionForm(instance=instancia_perfil)       
     return render(request, 'AppPro\perfil.html', {'form': form, 'perfil': instancia_perfil})
 
 
-
+#Comentarios en posteos
 @login_required 
 def comentar(request, pelicula_id):
     pelicula = get_object_or_404(Pelicula, pk=pelicula_id)
@@ -104,6 +106,7 @@ def comentar(request, pelicula_id):
     return render(request, 'AppPro/detalle_pese.html', {'pelicula': pelicula, 'form': form, 'comentarios': comentarios})
 
 
+
 def series(request):
     return render(request, "AppPro/series.html")
 
@@ -112,10 +115,12 @@ def infantiles(request):
     return render(request, "AppPro/infantiles.html")
 
 
+
 def resenias(request):
     return render(request, "AppPro/resenias.html")
 
 
+#Sobre mi
 def nosotros(request):
     return render(request, "AppPro/nosotros.html")
 
@@ -124,6 +129,7 @@ def contactanos(request):
     return render(request, "AppPro/contactanos.html")
 
 
+#listado de peliculas CBV
 class PeliculaList(ListView):
     model = Pelicula
     template_name = 'AppPro/listadepelicula.html'
