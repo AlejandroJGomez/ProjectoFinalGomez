@@ -1,0 +1,27 @@
+{% extends "AppPro/index.html" %}
+
+{% load static %}
+
+{% block titulo %}{% endblock titulo %}
+
+{% block body %}
+    <h1 class="display-4 fw-bolder">LISTA DE PELICULAS</h1>  
+    <ol class="list-group list-group-numbered">
+        {% for p in object_list %}
+            <li class="list-group-item">{{ p.titulo }}</li>
+        {% endfor %}
+    </ol>
+
+{% endblock %}
+
+
+
+
+
+
+    
+   
+  
+
+
+

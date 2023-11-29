@@ -19,4 +19,6 @@ urlpatterns = [
     path('nosotros', nosotros, name="nosotros"),
     path('infantiles', infantiles, name="infantiles"),
     path('contactanos', contactanos, name="contactanos"),
+    
+    path('pelicula/list', PeliculaList.as_view(), name="pelicula_list"),
     ]
