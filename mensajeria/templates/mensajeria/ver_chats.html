@@ -1,0 +1,80 @@
+{% extends "AppPro/index.html" %}
+
+{% load static %}
+
+{% block titulo %}{% endblock titulo %}
+
+{% block body %}
+
+    <section class="bg-light">
+        <div class="container p-3 p-lg-4">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+                    <table class="table fst-italic">
+                        <thead>
+                            <tr>
+                                <th class="fw-bolder lead text-center" colspan="7">Conversaciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+            
+                            {% if chats %}
+                                {% for chat in chats %}
+                                    <tr>
+                                        <td class="col-lg-2">
+                                            <div class="mx-3 mb-5 mb-lg-0">
+                                                {% if request.user == chat.user_chat_1 %}
+                                                    {% if chat.user_chat_2.perfil.foto_perfil %}
+                                                        <img width="48" height="48" class="img-foto_perfil rounded-circle" src= {{ chat.user_chat_2.perfil.foto_perfil.url }} alt="foto_perfil"/>
+                                                    {% else %}
+                                                        <img width="48" height="48" class="img-foto_perfil rounded-circle" src= {% static 'AppPro/img/avatar.png' %} alt="Sin foto_perfil"/>
+                                                    {% endif %}
+                                                {% else %}
+                                                    {% if chat.user_chat_1.perfil.foto_perfil %}
+                                                
+                                                        <img width="48" height="48" class="img-foto_perfil rounded-circle" src= {{ chat.user_chat_1.perfil.foto_perfil.url }} alt="foto_perfil"/>
+                                                    {% else %}
+                                                        <img width="48" height="48" class="img-foto_perfil rounded-circle" src= {% static 'AppPro/img/avatar.png' %} alt="Sin foto_perfil"/>
+                                                    {% endif %}
+                                                {% endif %}
+                                            </div>
+                                        </td>
+                                        <td class="col-lg-10 post-preview">
+                                            <a href={% url 'ver_chat' chat.id %}>
+                                                {% if request.user == chat.user_chat_1 %}
+                                                    <h3 class="post-subtitle">
+                                                        {% if chat.user_chat_2.get_full_name %}
+                                                            {{ chat.user_chat_2.get_full_name }}
+                                                        {% else %}
+                                                            {{ chat.user_chat_2.username }}
+                                                        {% endif %}
+                                                    </h3>
+                                                {% else %}
+                                                    <h3 class="post-subtitle">
+                                                        {% if chat.user_chat_1.get_full_name %}
+                                                            {{ chat.user_chat_1.get_full_name }}
+                                                        {% else %}
+                                                            {{ chat.user_chat_1.username }}
+                                                        {% endif %}
+                                                    </h3>
+                                                {% endif %}
+                                            </a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            {% else %}
+                                <tr>
+                                    <td class="post-subtitle lead">
+                                        <div class="col-sm-6 col-md-5 col-lg-6">
+                                            No has iniciado ninguna conversación
+                                        </div>
+                                    </td>
+                                </tr>
+                            {% endif %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

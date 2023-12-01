@@ -1,6 +1,6 @@
 from django.db import models
 from django.db.models.fields.files import ImageField
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 
 
 
@@ -35,6 +35,7 @@ class Perfil(models.Model):
     localidad=models.CharField(max_length=50,null=True,blank=True)
     ig=models.CharField(max_length=50, null=True,blank=True)
     email = models.EmailField(default='ejemplo@ejemplo.com')
+    grupo = models.ForeignKey(Group, on_delete=models.SET_NULL, null=True, blank=True, default=1)
     
 
     def __str__(self):

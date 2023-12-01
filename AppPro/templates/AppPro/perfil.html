@@ -13,7 +13,7 @@
                 <div class="card-body">
                     <div class="bg-success p-2 text-white bg-opacity-75"></div>
                     <img class="img-thumbnail rounded-circle mb-3" src="{{ perfil.foto_perfil.url }}" alt="{{ perfil.usuario.username }}" style="width:100px;">
-                    <h4> GRUPO AL QUE PERTENECE </h4>
+                    <h4> {{ perfil.grupo }} </h4>
                     <p><strong> Nombre de usuario: </strong>{{ perfil.usuario.username }}</p>
                     <p><strong> Localidad: </strong>{{ perfil.localidad }}</p>
                     <p><strong> IG: </strong>{{ perfil.ig }}</p>
